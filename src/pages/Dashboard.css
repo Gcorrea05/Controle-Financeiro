@@ -5,12 +5,38 @@
     box-sizing: border-box;
 }
 
+/* Ajuste no body para ocupar toda a tela */
 body {
     font-family: 'Arial', sans-serif;
     background: #f4f4f4;
     color: #333;
     line-height: 1.6;
-    padding: 1rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    min-height: 100vh;
+}
+
+/* Contêiner principal para ocupar mais espaço */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    width: 90%; /* Ocupa 90% da largura da tela */
+    max-width: 1400px; /* Define uma largura máxima maior */
+    padding: 2rem;
+    background: #fff; /* Fundo branco */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+/* Ajuste para limitar a largura do conteúdo */
+.content {
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    text-align: center;
 }
 
 /* Header */
@@ -20,26 +46,36 @@ body {
 }
 
 .header-container h1 {
-    font-size: 2rem;
+    font-size: 2.5rem; /* Aumenta o tamanho do título */
     color: #222;
 }
 
 .header-container p {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Aumenta o tamanho do texto */
     color: #555;
 }
 
-/* Overview Section */
+/* Contêiner para Visão Geral e Estatísticas */
+.overview-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem; /* Espaçamento entre as seções */
+    margin-bottom: 2rem;
+}
+
+/* Visão Geral */
 .overview {
+    flex: 2; /* Ocupa mais espaço */
     background: #eaf7f7;
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .overview h2 {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Aumenta o tamanho do título */
     margin-bottom: 1rem;
 }
 
@@ -47,6 +83,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem; /* Adiciona espaçamento entre os gráficos */
 }
 
 .chart {
@@ -65,33 +102,33 @@ body {
 
 .chart-info p {
     margin: 0.5rem 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
-/* Stats Section */
+/* Estatísticas (Desempenho e Prevenção) */
 .stats {
+    flex: 1; /* Ocupa menos espaço */
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre os blocos */
     margin-bottom: 2rem;
 }
 
 .stat-box {
-    flex: 1;
     background: #fff;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .stat-box h3 {
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* Aumenta o tamanho do título */
     margin-bottom: 0.5rem;
 }
 
 .stat-box p {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Aumenta o tamanho do texto */
     margin: 0.3rem 0;
 }
 
@@ -99,12 +136,12 @@ body {
 .traffic {
     background: #fff;
     border-radius: 10px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .traffic h2 {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Aumenta o tamanho do título */
     margin-bottom: 1rem;
 }
 
@@ -117,7 +154,7 @@ body {
 .traffic th,
 .traffic td {
     text-align: left;
-    padding: 0.8rem;
+    padding: 1rem;
     border-bottom: 1px solid #ddd;
 }
 
@@ -131,7 +168,7 @@ body {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .chart-container {
         flex-direction: column;
     }
