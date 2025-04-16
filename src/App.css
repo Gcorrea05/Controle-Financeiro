@@ -1,8 +1,17 @@
+/* Certifique-se de que o body e html ocupem 100% da altura da página */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;         /* Ocupa toda a largura disponível */
+  height: 100%;        /* Ocupa toda a altura disponível */
+  margin: 0;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box; /* Certifique-se de que o padding seja contado dentro do tamanho total */
 }
 
 .logo {
@@ -11,9 +20,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
