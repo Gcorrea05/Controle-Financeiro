@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Dashboard.css";
+import Login from "../pages/Login";
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
 } from "recharts";
-import {
-  Home, PieChart, Settings, Plus, LineChart as LineChartIcon, FileText,
-} from "lucide-react";
 
 const dataOverview = [
   { name: "Jan", uv: 4000 },
@@ -18,26 +22,95 @@ const dataOverview = [
   { name: "Aug", uv: 4000 },
 ];
 
-const dataMonthly = [
-  { name: "Sep", value: 0 },
-  { name: "Oct", value: 74100 },
-  { name: "Nov", value: 50000 },
-  { name: "Dec", value: 62000 },
-  { name: "Jan", value: 54000 },
-  { name: "Feb", value: 66000 },
-];
+function LoginModal({ onClose }) {
+  const [isCreatingAccount, setIsCreatingAccount] = useState(false); // Alterna entre login e criação de conta
+
+  const handleSwitch = () => {
+    setIsCreatingAccount(!isCreatingAccount);
+  };
+
+  return (
+    <div className="login-container">
+      {isCreatingAccount ? (
+        <div className="create-account">
+          <h2>Criar Conta</h2>
+          <form>
+            <input type="text" placeholder="Nome" className="input-field" />
+            <input type="email" placeholder="Email" className="input-field" />
+            <input type="password" placeholder="Senha" className="input-field" />
+            <button type="submit" className="submit-btn">
+              Criar Conta
+            </button>
+          </form>
+          <p>
+            Já tem uma conta?{" "}
+            <span className="switch-link" onClick={handleSwitch}>
+              Faça Login
+            </span>
+          </p>
+        </div>
+      ) : (
+        <div className="login">
+          <h2>Login</h2>
+          <form>
+            <input type="email" placeholder="Email" className="input-field" />
+            <input type="password" placeholder="Senha" className="input-field" />
+            <button type="submit" className="submit-btn">
+              Entrar
+            </button>
+          </form>
+          <p>
+            Ainda não tem uma conta?{" "}
+            <span className="switch-link" onClick={handleSwitch}>
+              Crie agora
+            </span>
+          </p>
+        </div>
+      )}
+      <button className="close-btn" onClick={onClose}>
+        Fechar
+      </button>
+    </div>
+  );
+}
 
 export default function Dashboard() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [inputValue, setInputValue] = useState(""); // Novo estado para o valor inserido
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleInputSubmit = () => {
+    console.log("Valor inserido:", inputValue); // Simulação de envio para o banco de dados
+    setInputValue(""); // Reseta o campo após o envio
+  };
+
   return (
     <div className="main-container">
-      <div className="header-container">  
+      {/* Cabeçalho */}
+      <div className="header-container">
         <h1>Controle de Gastos</h1>
         <p>Atualize e controle sua vida financeira!</p>
       </div>
 
+      {/* Botão de Login no canto superior direito */}
+      <button className="login-btn" onClick={() => setShowLogin(true)}>
+        Login
+      </button>
+
+      {/* Tela de Login como Overlay */}
+      {showLogin && (
+        <div className="overlay">
+          <LoginModal onClose={() => setShowLogin(false)} />
+        </div>
+      )}
+
+      {/* Seção de Visão Diária */}
       <div className="overview-stats">
         <div className="overview">
-          <h2>Visão Geral</h2>  
+          <h2>Visão Diária</h2>
           <div className="chart-container">
             <div className="chart">
               <ResponsiveContainer width="100%" height={300}>
@@ -52,46 +125,33 @@ export default function Dashboard() {
             </div>
             <div className="chart-info">
               <h3>Informações Adicionais</h3>
-              <p>Valor total de transações: $100,000</p>
-              <p>Lucro líquido: $50,000</p>
+              <p>Dia que mais gastou: 15/04</p>
+              <p>Com o que mais gastou: Alimentação</p>
+              <p>Total do mês: R$ 8.000</p>
             </div>
-          </div>
-        </div>
-        <div className="stats">
-          <div className="stat-box">
-            <h3>Desempenho</h3>
-            <p>Desempenho geral de vendas.</p>
-          </div>
-          <div className="stat-box">
-            <h3>Prevenção</h3>
-            <p>Indicadores de risco e prevenção.</p>
           </div>
         </div>
       </div>
 
+      {/* Campo para entrada de valores */}
+      <div className="value-input">
+        <h2>Insira valores</h2>
+        <input
+          type="text"
+          placeholder="Digite o valor"
+          value={inputValue}
+          onChange={handleInputChange}
+          className="input-field"
+        />
+        <button onClick={handleInputSubmit} className="submit-btn">
+          Enviar
+        </button>
+      </div>
+
+      {/* Gastos */}
       <div className="traffic">
-        <h2>Tráfego</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Visitas</th>
-              <th>Taxa de Conversão</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>10/04/2025</td>
-              <td>1500</td>
-              <td>5%</td>
-            </tr>
-            <tr>
-              <td>11/04/2025</td>
-              <td>2000</td>
-              <td>6%</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>Gastos</h2>
+        <p>Esta seção apresentará os gastos vindos do backend futuramente.</p>
       </div>
     </div>
   );
