@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .icon-button {
+    cursor: pointer;
+    font-size: 1.8rem;
+  }
+  
+  .overlay {
+    position: absolute;
+    z-index: 1000;
+    top: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+  
+  .overlay-box {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 1rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    pointer-events: auto;
+  }
+  
+  .menu-box {
+    background: #eee;
+    width: 260px;
+  }
+  
+  .menu-box h2 {
+    margin-top: 0;
+  }
+  
+  .menu-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-box li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .login-box .form {
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .login-box h2 {
+    text-align: center;
+  }
+  
+  .inputBox {
+    position: relative;
+    margin: 1.5rem 0;
+  }
+  
+  .inputBox input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    background: transparent;
+  }
+  
+  .inputBox span {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #aaa;
+  }
+  
+  .inputBox input:focus ~ span,
+  .inputBox input:valid ~ span {
+    top: -10px;
+    font-size: 0.8rem;
+    color: #333;
+  }
+  
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #333;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .links {
+    text-align: right;
+    margin-bottom: 1rem;
+  }
+  /* Fundo cinza para o campo "Digite o valor" */
+.input-field {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 90%; /* Responsivo para telas menores */
+  max-width: 400px; /* Define largura máxima */
+  border: 1px solid #ccc; /* Bordas visíveis */
+  border-radius: 5px; /* Bordas arredondadas */
+  background: #f0f0f0; /* Fundo cinza suave igual ao título */
+  color: #333; /* Texto escuro para contraste */
+  margin-bottom: 1rem;
+}
+
+  .hidden {
+    display: none;
+  }
+  

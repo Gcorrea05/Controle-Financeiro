@@ -5,39 +5,59 @@
     box-sizing: border-box;
 }
 
-/* Ajuste no body para ocupar toda a tela */
+/* Body geral */
 body {
     font-family: 'Arial', sans-serif;
-    background: #f4f4f4;
-    color: #333;
+    background: #fff; /* Fundo branco para toda a página */
+    color: #333; /* Cor do texto */
     line-height: 1.6;
-    width: 100vw; /* Remove margens dos lados */
-    height: 100vh; /* Ocupa toda a altura da viewport */
-    overflow: hidden; /* Elimina rolagem lateral */
+    width: 100vw; /* Remove margens horizontais */
+    min-height: 100vh;
+    overflow-y: auto; /* Permite rolagem vertical */
     display: flex;
     flex-direction: column;
 }
 
-/* Contêiner principal ocupando toda a tela */
-.main-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove qualquer margem */
-    overflow-y: auto; /* Apenas rolagem vertical */
-}
-
-/* Ajuste do cabeçalho */
-.header-container {
+/* Caixa de Entrada com fundo cinza */
+.value-input {
     width: 100%;
     text-align: center;
-    padding: 1rem 0;
-    background: #eaeaea;
-    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    background: #f0f0f0; /* Fundo cinza suave */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Título fixo com fundo cinza */
+.header-container {
+    width: 100%; /* Ocupa toda a largura da página */
+    background: #f0f0f0; /* Fundo cinza suave */
+    padding: 1rem 0; /* Espaçamento interno */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    position: fixed; /* Fixa o título no topo da página */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Mantém acima de outros elementos */
+    text-align: center; /* Centraliza o texto */
+}
+
+.header-container h1 {
+    font-size: 2rem;
+    color: #333; /* Cor do título */
+    margin: 0; /* Remove margem extra */
+}
+
+/* Espaço compensado abaixo do título fixo */
+.main-container {
+    width: 100%;
+    min-height: 100vh; /* Garante altura mínima em telas maiores */
+    margin-top: 5rem; /* Ajusta o espaço para compensar o header fixo */
+    padding: 2rem;
+    background: #fff; /* Fundo branco para o restante da página */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre os elementos principais */
 }
 
 /* Visão Geral e Estatísticas */
@@ -48,12 +68,11 @@ body {
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
-    box-sizing: border-box; /* Garante que padding seja considerado dentro das dimensões */
 }
 
 .overview {
     flex: 1;
-    background: #eaf7f7;
+    background: #eaf7f7; /* Fundo azul claro */
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -74,54 +93,53 @@ body {
 
 .chart-info {
     flex: 1;
-    background: white;
+    background: white; /* Fundo branco */
     border-radius: 10px;
     padding: 1rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Seção de Tráfego */
+/* Seção de Controle de Gastos */
 .traffic {
     width: 100%;
-    margin-top: 1rem;
-    background: #fff;
-    border-radius: 10px;
+    background: #f8f8f8; /* Fundo cinza bem claro */
+    border-radius: 10px; /* Bordas arredondadas */
     padding: 1rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra igual aos outros elementos */
 }
 
 /* Botão de Login */
 .login-btn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.5rem 1rem;
+    top: 50%; /* Alinha verticalmente no meio do header */
+    right: 2rem; /* Alinha horizontalmente à direita */
+    transform: translateY(-50%); /* Corrige o alinhamento central */
     background-color: #2575fc;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 0.7rem 1rem;
     font-size: 1rem;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    z-index: 1001; /* Mantém acima de outros elementos */
 }
 
 .login-btn:hover {
     background-color: #1a5bbf;
 }
-
-/* Overlay */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.input-field {
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 90%; /* Responsivo para telas menores */
+    max-width: 400px; /* Define largura máxima */
+    border: 1px solid #ccc; /* Bordas visíveis */
+    border-radius: 5px; /* Bordas arredondadas */
+    background: #f0f0f0; /* Fundo cinza suave igual ao título */
+    color: #333; /* Texto escuro para contraste */
+    margin-bottom: 1rem;
 }
+
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -141,61 +159,18 @@ body {
 
     .traffic {
         width: 100%;
- 
     }
+
     .value-input {
         width: 100%;
         text-align: center;
         margin-bottom: 2rem;
     }
     
-    .value-input h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
     .input-field {
         padding: 0.5rem;
         font-size: 1rem;
-        width: 200px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-right: 1rem;
-    }
-    
-    .submit-btn {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        background-color: #2575fc;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    
-    .submit-btn:hover {
-        background-color: #1a5bbf;
-    }
-    .login-container {
-        width: 100%;
-        max-width: 400px;
-        background: #fff;
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-    
-    .login-container h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-    }
-    
-    .input-field {
-        width: 100%;
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-        font-size: 1rem;
+        width: 90%;
         border: 1px solid #ccc;
         border-radius: 5px;
     }
@@ -208,22 +183,7 @@ body {
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 1rem;
-        margin-top: 1rem;
     }
-    
-    .submit-btn:hover {
-        background-color: #1a5bbf;
-    }
-    
-    .switch-link {
-        color: #2575fc;
-        cursor: pointer;
-        font-weight: bold;
-    }
-    
-    .switch-link:hover {
-        text-decoration: underline;
-    }
+
     
 }
